@@ -1,0 +1,17 @@
+[http]
+[url "https://"]
+	insteadOf = git://
+[gui]
+	recentrepo = C:/work/mos-prom-project/t
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = DUNK73
+	email = Z7dank3@yandex.ru
+[http]  
+    proxy = http://burov-os:Offspring3@proxysg.rs.ru:8080
+[https] 
+    proxy = https://burov-os:Offspring3@proxysg.rs.ru:8080
