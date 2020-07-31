@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TinySliderSettings } from 'tiny-slider';
 
 @Component({
   selector: 'app-main-page',
@@ -6,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-page.component.less']
 })
 export class MainPageComponent implements OnInit {
+
+  public adSliderSettings: TinySliderSettings = {
+    mode: 'gallery',
+    autoplay: true,
+    autoHeight: false,
+    autoWidth: false,
+    nav: true,
+    controls: true,
+  };
 
   constructor() { }
 

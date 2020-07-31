@@ -5,12 +5,12 @@ import { LayoutComponent } from './layout-components/layout/layout.component';
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent
+    loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
   },
   {
     path: 'l',
-    loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
-  }
+    component: LayoutComponent
+  },
 ];
 
 @NgModule({
