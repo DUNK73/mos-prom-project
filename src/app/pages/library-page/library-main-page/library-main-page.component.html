@@ -1,0 +1,218 @@
+<section class="content">
+  <section class="intro wrapper">
+    <h2 class="intro__title">Библиотека экспортера</h2>
+    <p class="intro__sub-title">
+      Мы собрали все меры поддержки для крупного и среднего бизнеса, обработали
+      и отфильтровали, чтобы вы смогли максимально быстро и точно найти
+      поддержку, которая вам подойдет
+    </p>
+  </section>
+
+  <section class="image"></section>
+
+  <section class="questions wrapper">
+    <p class="questions__sub-title">
+      Опишите свое предприятие, чтобы увидеть, какие меры поддержки вам подойдут
+    </p>
+    <form class="form" [formGroup]="form">
+      <div class="field">
+        <p class="field__label">
+          Относится ли ваша компания к субъекту малого или среднего
+          предпринимательства?
+        </p>
+        <div class="field__radio-group">
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-1-1"
+            name="option1"
+            value="true"
+            formControlName="option1"
+          />
+          <label
+            class="field__radio-label button button--radio"
+            for="option-1-1"
+            >Да</label
+          >
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-1-2"
+            name="option1"
+            value="false"
+            formControlName="option1"
+          />
+          <label
+            class="field__radio-label button button--radio"
+            for="option-1-2"
+            >Нет</label
+          >
+        </div>
+      </div>
+      <div class="field">
+        <p class="field__label">
+          Ваша компания производит свою продукцию в Москве?
+        </p>
+        <div class="field__radio-group">
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-2-1"
+            name="option2"
+            value="true"
+            formControlName="option2"
+          />
+          <label
+            class="field__radio-label button button--radio"
+            for="option-2-1"
+            >Да</label
+          >
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-2-2"
+            name="option2"
+            value="false"
+            formControlName="option2"
+          />
+          <label
+            class="field__radio-label button button--radio"
+            for="option-2-2"
+            >Нет</label
+          >
+        </div>
+      </div>
+      <div class="field">
+        <p class="field__label">Вы уже экспортируете свою продукцию?</p>
+        <div class="field__radio-group">
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-3-1"
+            name="option3"
+            value="true"
+            formControlName="option3"
+          />
+          <label
+            class="field__radio-label button button--radio"
+            for="option-3-1"
+            >Да</label
+          >
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-3-2"
+            name="option3"
+            value="false"
+            formControlName="option3"
+          />
+          <label
+            class="field__radio-label button button--radio"
+            for="option-3-2"
+            >Нет</label
+          >
+        </div>
+      </div>
+      <div class="field">
+        <p class="field__label">
+          К какой области относится продукция подлежающая экспорту?
+        </p>
+        <div class="field__radio-group">
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-4-1"
+            name="option4"
+            value="0"
+            formControlName="option4"
+          />
+          <label
+            class="field__radio-label button button--radio button--radio-large" for="option-4-1"
+            >Промышленный комплекс</label
+          >
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-4-2"
+            name="option4"
+            value="1"
+            formControlName="option4"
+          />
+          <label
+            class="field__radio-label button button--radio button--radio-large" for="option-4-2"
+            >Агропромышленный комплекс</label
+          >
+          <input
+            type="radio"
+            class="field__radio-input"
+            id="option-4-3"
+            name="option4"
+            value="2"
+            formControlName="option4"
+          />
+          <label
+            class="field__radio-label button button--radio button--radio-large" for="option-4-3"
+            >Другое</label
+          >
+        </div>
+      </div>
+      <div class="field">
+        <p class="field__label">
+          Являетесь ли вы участником каких-то из перечисленных образований?
+        </p>
+        <ul class="field__list">
+          <li class="field__item">
+            <label
+              ><input
+                type="checkbox"
+                class="field__checkbox"
+                formControlName="checkbox1"
+              />Промышленный комплекс</label
+            >
+          </li>
+          <li class="field__item">
+            <label
+              ><input
+                type="checkbox"
+                class="field__checkbox"
+                formControlName="checkbox2"
+              />Инновационный кластер</label
+            >
+          </li>
+          <li class="field__item">
+            <label
+              ><input
+                type="checkbox"
+                class="field__checkbox"
+                formControlName="checkbox3"
+              />Технопарк</label
+            >
+          </li>
+          <li class="field__item">
+            <label
+              ><input
+                type="checkbox"
+                class="field__checkbox"
+                formControlName="checkbox4"
+              />Индустриальный (промышленный) парк</label
+            >
+          </li>
+          <li class="field__item">
+            <label
+              ><input
+                type="checkbox"
+                class="field__checkbox"
+                formControlName="checkbox5"
+              />Ничего из перечисленного</label
+            >
+          </li>
+        </ul>
+      </div>
+      {{ form.value | json }}
+      <div class="form__bottom">
+        <button class="form__bottom-item button">Готово</button>
+        <a class="form__bottom-item link" [routerLink]="['list']">Пропустить</a>
+      </div>
+    </form>
+  </section>
+</section>

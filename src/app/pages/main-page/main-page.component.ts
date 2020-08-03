@@ -10,11 +10,12 @@ export class MainPageComponent implements OnInit {
 
   public adSliderSettings: TinySliderSettings = {
     mode: 'gallery',
-    autoplay: true,
+    autoplay: false,
     autoHeight: false,
     autoWidth: false,
-    nav: true,
+    // nav: true,
     controls: true,
+    loop: false,
   };
 
   constructor() { }

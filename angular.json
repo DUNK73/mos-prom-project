@@ -31,6 +31,7 @@
               "src/styles.less",
               "src/assets/less/body.less",
               "src/assets/less/button.less",
+              "src/assets/less/link.less",
               "src/assets/less/tiny-slider.less"
             ],
             "scripts": []

@@ -1,0 +1,38 @@
+<section class="container-detail-page">
+  <div class="library-list">
+    <div class="library-list__filter-column">
+      <button class="library-list__filter-button button">
+        Применить сохраненные фильтры
+      </button>
+      <div class="library-list__filter filter tile">
+        <ul>
+          <li>Область продукции для экспорта</li>
+          <li>Сроки подачи</li>
+          <li>Размер предприятия</li>
+          <li>Направление мер поддержки</li>
+          <li>Формат предоставления меры поддержки</li>
+        </ul>
+
+        <a
+          class="filter__save link"
+          [routerLink]="['/routePath']"
+          routerLinkActive="router-link-active"
+          >Сохранить фильтры</a
+        >
+
+        <button class="filter__reset button">Обновить</button>
+      </div>
+    </div>
+    <div class="library-list__list-column">
+      <input class="library-list__search" placeholder="Поиск..." />
+      <div class="library-list__list">
+        <div
+          class="library-list__item"
+          *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+        >
+          <app-library-list-item></app-library-list-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
