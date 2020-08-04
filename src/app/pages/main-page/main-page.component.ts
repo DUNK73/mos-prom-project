@@ -11,11 +11,23 @@ export class MainPageComponent implements OnInit {
   public adSliderSettings: TinySliderSettings = {
     mode: 'gallery',
     autoplay: false,
-    autoHeight: false,
+    autoHeight: true,
     autoWidth: false,
     // nav: true,
     controls: true,
     loop: false,
+    // gutter: 10,
+    // edgePadding: 25,
+    // gutter: 28,
+    controlsContainer: `.slider-block__controls-container`,
+    responsive: {
+      768: {
+        items: 2,
+        // edgePadding: 21,
+        // gutter: 22,
+      },
+    }
+
   };
 
   constructor() { }

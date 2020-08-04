@@ -15,6 +15,7 @@
       Опишите свое предприятие, чтобы увидеть, какие меры поддержки вам подойдут
     </p>
     <form class="form" [formGroup]="form">
+
       <div class="field">
         <p class="field__label">
           Относится ли ваша компания к субъекту малого или среднего
@@ -156,7 +157,7 @@
           >
         </div>
       </div>
-      <div class="field">
+      <!-- <div class="field">
         <p class="field__label">
           Являетесь ли вы участником каких-то из перечисленных образований?
         </p>
@@ -207,12 +208,13 @@
             >
           </li>
         </ul>
-      </div>
-      {{ form.value | json }}
+      </div> -->
+
       <div class="form__bottom">
         <button class="form__bottom-item button">Готово</button>
         <a class="form__bottom-item link" [routerLink]="['list']">Пропустить</a>
       </div>
+
     </form>
   </section>
 </section>

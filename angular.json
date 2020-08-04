@@ -29,10 +29,10 @@
             ],
             "styles": [
               "src/styles.less",
-              "src/assets/less/body.less",
-              "src/assets/less/button.less",
-              "src/assets/less/link.less",
-              "src/assets/less/tiny-slider.less"
+              "src/assets/less/blocks/body.less",
+              "src/assets/less/blocks/button.less",
+              "src/assets/less/blocks/link.less",
+              "src/assets/less/blocks/tiny-slider.less"
             ],
             "scripts": []
           },

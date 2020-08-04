@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnalyticsPageComponent } from './analytics-page/analytics-page.component';
 import { EventsPageComponent } from './events-page/events-page.component';
-import { LibraryMainPageComponent } from './library-page/library-main-page/library-main-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { PageContainerComponent } from './page-container/page-container.component';

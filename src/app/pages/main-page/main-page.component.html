@@ -6,12 +6,12 @@
       Мы помогаем компаниям увеличить экспорт на каждом этапе в любую точку
       мира.
     </p>
-    <div class="intro__actions wrapper section-block">
+    <div class="intro__actions">
       <ul class="intro__action-list">
         <li class="intro__action-item">
           <button class="button">Зарегистрироваться</button>
         </li>
-        <li class="intro__action-item"><a class="intro__action-link">Для байеров</a></li>
+        <li class="intro__action-item"><a class="intro__action-link link">Для байеров</a></li>
       </ul>
     </div>
   </section>
@@ -23,34 +23,28 @@
 
     <ul class="secttions__list">
       <li class="secttions__item">
-        <a class="sections__item-link" [routerLink]="['library']"
-          >Библиотека экспортера</a
-        >
+        <a class="sections__item-link link" [routerLink]="['library']">Библиотека экспортера</a>
         <p class="sections__item-info">
           Полный перечень мер государственной поддержки с возможностью
           оперативного поиска и фильтрации результатов под запросы.
         </p>
       </li>
       <li class="secttions__item">
-        <a class="sections__item-link" [routerLink]="['analytics']"
-          >Аналитические сводки по экспортным рынкам</a
-        >
+        <a class="sections__item-link link" [routerLink]="['analytics']">Аналитические сводки по экспортным рынкам</a>
         <p class="sections__item-info">
           Оперативное предоставление расширенной аналитики по странам и рынкам с
           возможностью фильтрации по отраслям и странам.
         </p>
       </li>
       <li class="secttions__item">
-        <a class="sections__item-link" [routerLink]="['events']">Мероприятия</a>
+        <a class="sections__item-link link" [routerLink]="['events']">Мероприятия</a>
         <p class="sections__item-info">
           Выставки, мастер-классы и бизнес-миссии. Все полезные экспортерам
           мероприятия в одном месте.
         </p>
       </li>
       <li class="secttions__item">
-        <a class="sections__item-link" [routerLink]="['news']"
-          >Новостные дайджесты</a
-        >
+        <a class="sections__item-link link" [routerLink]="['news']">Новостные дайджесты</a>
         <p class="sections__item-info">
           Полный перечень мер государственной поддержки с возможностью
           оперативного поиска и фильтрации результатов под запросы.
@@ -65,10 +59,7 @@
     </p>
 
     <ul class="organisations__list">
-      <li
-        class="organisations__item"
-        *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
-      >
+      <li class="organisations__item" *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
         <img class="organisations__item-logo" src="./assets/images/logo.png" />
       </li>
     </ul>
@@ -77,64 +68,74 @@
   <section class="slider-block wrapper section-block">
     <h3 class="slider-block__title">
       Библиотека экспортера
-      <a class="slider-block__link" [routerLink]="['/library']"
-        >Перейти в раздел</a
-      >
+      <a class="slider-block__link link" [routerLink]="['/library']">Перейти в раздел</a>
     </h3>
 
     <div class="slider-block__slider slider">
+
+      <div class="slider-block__controls-container">
+        <button class="slider-block__button slider-block__button--prev arrow"><app-svg-arrow></app-svg-arrow></button>
+        <button class="slider-block__button slider-block__button--next arrow"><app-svg-arrow></app-svg-arrow></button>
+      </div>
+
       <app-tiny-slider [sliderConfig]="adSliderSettings">
         <article class="slider__item">
-          <h4 class="slider__item-title">Цели</h4>
-          <p class="slider__item-text">
-            Субсидия в целях возмещения части затрат, связанных с созданием
-            нового продукта, модернизацией существующего продукта, модернизацией
-            или расширением производства продукции на основе введения в
-            хозяйственный оборот результатов инжиниринговых услуг.
-          </p>
-          <nav class="slider__item-navigation">
-            <ul class="slider__navigation-list">
-              <li class="slider__navigation-item">ПК</li>
-              <li class="slider__navigation-item">Инвестиции</li>
-              <li class="slider__navigation-item">МСП</li>
-            </ul>
-          </nav>
+          <div class="slider__container">
+            <h4 class="slider__item-title">Цели</h4>
+            <p class="slider__item-text">
+              Субсидия в целях возмещения части затрат, связанных с созданием
+              нового продукта, модернизацией существующего продукта, модернизацией
+              или расширением производства продукции на основе введения в
+              хозяйственный оборот результатов инжиниринговых услуг.
+            </p>
+            <nav class="slider__item-navigation">
+              <ul class="slider__navigation-list">
+                <li class="slider__navigation-item">ПК</li>
+                <li class="slider__navigation-item">Инвестиции</li>
+                <li class="slider__navigation-item">МСП</li>
+              </ul>
+            </nav>
+          </div>
         </article>
         <article class="slider__item">
-          <h4 class="slider__item-title">Цели</h4>
-          <p class="slider__item-text">
-            Компенсация организациям части затрат, связанных с сертификацией
-            продукции АПК на внешних рынках
-          </p>
-          <nav class="slider__item-navigation">
-            <ul class="slider__navigation-list">
-              <li class="slider__navigation-item">ПК</li>
-              <li class="slider__navigation-item">Инвестиции</li>
-              <li class="slider__navigation-item">МСП</li>
-            </ul>
-          </nav>
+          <div class="slider__container">
+            <h4 class="slider__item-title">Цели</h4>
+            <p class="slider__item-text">
+              Компенсация организациям части затрат, связанных с сертификацией
+              продукции АПК на внешних рынках
+            </p>
+            <nav class="slider__item-navigation">
+              <ul class="slider__navigation-list">
+                <li class="slider__navigation-item">ПК</li>
+                <li class="slider__navigation-item">Инвестиции</li>
+                <li class="slider__navigation-item">МСП</li>
+              </ul>
+            </nav>
+          </div>
         </article>
         <article class="slider__item">
-          <h4 class="slider__item-title">Цели</h4>
-          <p class="slider__item-text">
-            Субсидия в целях возмещения части затрат, связанных с созданием
-            нового продукта, модернизацией существующего продукта, модернизацией
-            или расширением производства продукции на основе введения в
-            хозяйственный оборот результатов инжиниринговых услуг.
-          </p>
-          <nav class="slider__item-navigation">
-            <ul class="slider__navigation-list">
-              <li class="slider__navigation-item">ПК</li>
-              <li class="slider__navigation-item">Инвестиции</li>
-              <li class="slider__navigation-item">МСП</li>
-            </ul>
-          </nav>
+          <div class="slider__container">
+            <h4 class="slider__item-title">Цели</h4>
+            <p class="slider__item-text">
+              Субсидия в целях возмещения части затрат, связанных с созданием
+              нового продукта, модернизацией существующего продукта, модернизацией
+              или расширением производства продукции на основе введения в
+              хозяйственный оборот результатов инжиниринговых услуг.
+            </p>
+            <nav class="slider__item-navigation">
+              <ul class="slider__navigation-list">
+                <li class="slider__navigation-item">ПК</li>
+                <li class="slider__navigation-item">Инвестиции</li>
+                <li class="slider__navigation-item">МСП</li>
+              </ul>
+            </nav>
+          </div>
         </article>
       </app-tiny-slider>
     </div>
   </section>
 
-  <section class="cabinet wrapper">
+  <section class="cabinet wrapper section-block">
     <a>Личный кабинет</a>
   </section>
 </section>
