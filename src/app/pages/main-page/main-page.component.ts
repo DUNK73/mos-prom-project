@@ -32,18 +32,36 @@ export class MainPageComponent implements OnInit {
     //   },
     // }
 
-    loop: false,
-    responsive: {
-      350: {
-        items: 2
-      },
-      500: {
-        items: 3
-      }
-    },
-    swipeAngle: false,
-    speed: 400
 
+    slideBy: 'page',
+    items: 1,
+    nav: true,
+    speed: 400,
+    autoplayButtonOutput: false,
+    loop: true,
+    touch: true,
+    mouseDrag: true,
+    lazyload: false,
+    rewind: true,
+    freezable: false,
+    autoWidth: false,
+    controls: true,
+    // controlsContainer: this.carouselControls,
+    controlsContainer: `.slider-block__controls-container`,
+    responsive: {
+      550: {
+        items: 2,
+      },
+      768: {
+        items: 1,
+      },
+      1024: {
+        items: 2,
+      },
+      1440: {
+        items: 3,
+      },
+    },
   };
 
   public resolutions: Array<Resolution> = [];
