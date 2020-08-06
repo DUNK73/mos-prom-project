@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreInterceptorService } from './interseptors/core-interceptor.service';
+import { CoreInterceptorService } from './core/interseptors/core-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 @NgModule({

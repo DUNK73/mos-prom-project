@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { TinySliderSettings } from 'tiny-slider';
-import { TestService } from '../../services/test.service';
+import { TestService } from '../../core/services/test.service';
 import { tap } from 'rxjs/operators';
 import { Resolution } from 'src/app/models/resolution.model';
+import { TinySliderComponent } from '../../shared/components/tiny-slider/tiny-slider.component';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.less']
+  styleUrls: ['./main-page.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent implements OnInit {
 
@@ -66,8 +68,12 @@ export class MainPageComponent implements OnInit {
 
   public resolutions: Array<Resolution> = [];
 
+  @ViewChild(TinySliderComponent)
+  public tinySliderComponent: TinySliderComponent;
+
   constructor(
-    private testService: TestService
+    private testService: TestService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
@@ -75,6 +81,8 @@ export class MainPageComponent implements OnInit {
       .pipe(
         tap(data => {
           this.resolutions = data;
+          this.changeDetectorRef.detectChanges();
+          this.tinySliderComponent.ngAfterContentInit();
         })
       )
       .subscribe();
