@@ -6,14 +6,16 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TestService {
+export class ResolutionsService {
 
   constructor(
     private http: HttpClient
   ) { }
 
   public getResolutions(): Observable<Array<Resolution>> {
-    return this.http.get<Array<Resolution>>('api/resolutions');
+    return this.http.get<Array<Resolution>>('api/navigator/resolutions');
   }
+
+  
 
 }
