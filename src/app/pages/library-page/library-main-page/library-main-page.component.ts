@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormControl, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-main-library-main-page',
   templateUrl: './library-main-page.component.html',
@@ -8,9 +9,9 @@ import { FormGroup, FormControl } from '@angular/forms'
 export class LibraryMainPageComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({
-    option1: new FormControl(),
-    option2: new FormControl(),
-    option3: new FormControl(),
+    inMoscom: new FormControl(),
+    exported: new FormControl(),
+    smallEnterprise: new FormControl(),
     option4: new FormControl(),
 
     checkbox1: new FormControl(),
@@ -19,6 +20,7 @@ export class LibraryMainPageComponent implements OnInit {
     checkbox4: new FormControl(),
     checkbox5: new FormControl(),
   });
+
 
   constructor() { }
 

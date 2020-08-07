@@ -6,6 +6,7 @@
   width: 380px;
   margin-right: 44px;
 }
+
 .library-list__filter-button {
   margin-bottom: 24px;
   width: 100%;
@@ -30,18 +31,40 @@
   text-align: center;
   padding: 24px;
 }
+
 .filter__save {
   margin-bottom: 32px;
   display: inline-block;
 }
 
-.library-list__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.library-list {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__item {
+    box-sizing: border-box;
+    width: calc(50% - 20px);
+    height: 400px;
+    margin: 0 0 32px 0;
+  }
 }
 
-.library-list__item {
-  width: calc(50% - 20px);
-  margin: 0 0 32px 0;
+.filter {
+  &__options-list {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__option-item {
+    margin: 0 0 32px 0;
+  }
+
+  &__option-title {
+    margin: 0 0 32px 0;
+  }
 }

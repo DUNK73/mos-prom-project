@@ -67,6 +67,7 @@ export class MainPageComponent implements OnInit {
   };
 
   public resolutions: Array<Resolution> = [];
+  public sizeOfEnterpriseList$ = this.testService.getSizeOfEnterpriseList();
 
   @ViewChild(TinySliderComponent)
   public tinySliderComponent: TinySliderComponent;
@@ -86,6 +87,7 @@ export class MainPageComponent implements OnInit {
         })
       )
       .subscribe();
+
   }
 
 }

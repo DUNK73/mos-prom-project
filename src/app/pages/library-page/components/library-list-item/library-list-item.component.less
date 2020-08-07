@@ -5,57 +5,89 @@
   border-radius: 18px;
 
   padding: 24px;
-}
 
-.element__menu-button {
-  position: absolute;
-  border: none;
-  width: 22px;
-
-
-  top: 40px;
-  right: 40px;
-
-  margin: 0;
-  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 
-  &::before {
-    content: '';
-    display: block;
-    background-color: #C4C4C4;
-    width: 6px;
-    height: 6px;
-    box-shadow: -10px 0 0 #C4C4C4,
-      10px 0 0 #C4C4C4;
-    border-radius: 50%;
+  &__menu-button {
+    position: absolute;
+    border: none;
+    width: 22px;
+
+
+    top: 40px;
+    right: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+
+    &::before {
+      content: '';
+      display: block;
+      background-color: #C4C4C4;
+      width: 6px;
+      height: 6px;
+      box-shadow: -10px 0 0 #C4C4C4,
+        10px 0 0 #C4C4C4;
+      border-radius: 50%;
+    }
+
+    &:active+&__menu,
+    &:focus+&__menu {
+      display: block;
+    }
+
   }
 
-  &:active+.element__menu,
-  &:focus+.element__menu {
-    display: block;
+  &__menu {
+    display: none;
   }
 
-}
+  &__section {
+    margin-bottom: 16px;
 
-.element__menu {
-  display: none;
-}
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-.element__section {
-  margin-bottom: 16px;
+  &__text {
+    margin: 0;
+  }
 
-  &:last-child {
-    margin-bottom: 0;
+  &__purposes-text {
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__navigation {
+    margin-top: auto;
+  }
+
+  &__navigation-list {
+    display: flex;
+    justify-self: flex-end;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__navigation-item {
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
 }
 
-.element__text {
-  margin: 0;
-}
-
-.element__title {
-  margin: 0;
-}

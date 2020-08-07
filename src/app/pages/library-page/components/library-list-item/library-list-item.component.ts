@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Resolution } from 'src/app/models/resolution.model';
 
 @Component({
   selector: 'app-library-list-item',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./library-list-item.component.less']
 })
 export class LibraryListItemComponent implements OnInit {
+
+  @Input()
+  public entity: Resolution;
 
   constructor() { }
 

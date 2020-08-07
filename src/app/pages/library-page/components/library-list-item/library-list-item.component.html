@@ -6,13 +6,13 @@
 
   <section class="element__section">
     <h3 class="element__title">НПА</h3>
-    <p class="element__text">Постановление № 1816</p>
-    <p class="element__text">25.12.2019</p>
+    <p class="element__text">{{entity.res_number}}</p>
+    <p class="element__text">{{entity.date_of_res}}</p>
   </section>
   <section class="element__section">
     <h3 class="element__title">Срок подачи</h3>
     <p class="element__text">
-      Не позднее 05.11.
+      Не позднее {{entity.application_deadline}}
     </p>
   </section>
   <section class="element__section">
@@ -21,18 +21,37 @@
   </section>
   <section class="element__section">
     <h3 class="element__title">Цели</h3>
-    <p class="element__text">
-      Субсидия в целях возмещения части затрат, связанных с созданием нового
-      продукта, модернизацией существующего продукта, модернизацией или
-      расширением производства продукции на основе введения в хозяйственный
-      оборот результатов инже
+    <p class="element__text element__purposes-text">
+      {{ entity.res_title }}
     </p>
   </section>
   <nav class="element__navigation">
     <ul class="element__navigation-list">
-      <li class="element__navigation-item">АПК</li>
-      <li class="element__navigation-item">Оборудование</li>
-      <li class="element__navigation-item">МСП</li>
+
+      <li class="element__navigation-item">
+        <a
+          class="element__link link"
+          [routerLink]="['test']"
+          [title]="entity.scope_product_export.title"
+          >{{ entity.scope_product_export.title }}</a
+        >
+      </li>
+      <li class="element__navigation-item">
+        <a
+          class="element__link link"
+          [routerLink]="['test']"
+          [title]="entity.size_of_enterprise.title"
+          >{{ entity.size_of_enterprise.title }}</a
+        >
+      </li>
+      <li class="element__navigation-item">
+        <a
+          class="element__link link"
+          [routerLink]="['test']"
+          [title]="entity.support_measures[0].title"
+          >{{ entity.support_measures[0].title }}</a
+        >
+      </li>
     </ul>
   </nav>
 </article>

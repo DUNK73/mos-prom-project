@@ -25,27 +25,27 @@
           <input
             type="radio"
             class="field__radio-input"
-            id="option-1-1"
-            name="option1"
+            id="inMoscom-1"
+            name="inMoscom"
             value="true"
-            formControlName="option1"
+            formControlName="inMoscom"
           />
           <label
             class="field__radio-label button button--radio"
-            for="option-1-1"
+            for="inMoscom-1"
             >Да</label
           >
           <input
             type="radio"
             class="field__radio-input"
-            id="option-1-2"
-            name="option1"
+            id="inMoscom-2"
+            name="inMoscom"
             value="false"
-            formControlName="option1"
+            formControlName="inMoscom"
           />
           <label
             class="field__radio-label button button--radio"
-            for="option-1-2"
+            for="inMoscom-2"
             >Нет</label
           >
         </div>
@@ -58,27 +58,27 @@
           <input
             type="radio"
             class="field__radio-input"
-            id="option-2-1"
-            name="option2"
+            id="exported-1"
+            name="exported"
             value="true"
-            formControlName="option2"
+            formControlName="exported"
           />
           <label
             class="field__radio-label button button--radio"
-            for="option-2-1"
+            for="exported-1"
             >Да</label
           >
           <input
             type="radio"
             class="field__radio-input"
-            id="option-2-2"
-            name="option2"
+            id="exported-2"
+            name="exported"
             value="false"
-            formControlName="option2"
+            formControlName="exported"
           />
           <label
             class="field__radio-label button button--radio"
-            for="option-2-2"
+            for="exported-2"
             >Нет</label
           >
         </div>
@@ -89,27 +89,27 @@
           <input
             type="radio"
             class="field__radio-input"
-            id="option-3-1"
-            name="option3"
+            id="smallEnterprise-1"
+            name="smallEnterprise"
             value="true"
-            formControlName="option3"
+            formControlName="smallEnterprise"
           />
           <label
             class="field__radio-label button button--radio"
-            for="option-3-1"
+            for="smallEnterprise-1"
             >Да</label
           >
           <input
             type="radio"
             class="field__radio-input"
-            id="option-3-2"
-            name="option3"
+            id="smallEnterprise-2"
+            name="smallEnterprise"
             value="false"
-            formControlName="option3"
+            formControlName="smallEnterprise"
           />
           <label
             class="field__radio-label button button--radio"
-            for="option-3-2"
+            for="smallEnterprise-2"
             >Нет</label
           >
         </div>
@@ -211,7 +211,7 @@
       </div> -->
 
       <div class="form__bottom">
-        <button class="form__bottom-item button">Готово</button>
+        <a class="form__bottom-item button" [routerLink]="['list']" [queryParams]="this.form.value">Готово</a>
         <a class="form__bottom-item link" [routerLink]="['list']">Пропустить</a>
       </div>
 

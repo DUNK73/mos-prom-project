@@ -45,3 +45,6 @@ export interface OrganizerOfResolution {
   short_description: string;
   is_active: boolean;
 }
+
+
+

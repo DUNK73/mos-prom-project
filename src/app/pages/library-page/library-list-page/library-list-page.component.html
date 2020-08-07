@@ -4,15 +4,95 @@
       <button class="library-list__filter-button button">
         Применить сохраненные фильтры
       </button>
+      {{ form.value | json }}
       <div class="library-list__filter filter tile">
-        <ul>
-          <li>Область продукции для экспорта</li>
-          <li>Сроки подачи</li>
-          <li>Размер предприятия</li>
-          <li>Направление мер поддержки</li>
-          <li>Формат предоставления меры поддержки</li>
-        </ul>
-
+        <form [formGroup]="form">
+          <ul class="filter__options-list">
+            <li class="filter__option-item">
+              <h4 class="filter__option-title">
+                Область продукции для экспорта
+              </h4>
+              <div
+                class="filter__option-value"
+                *ngFor="let item of this.scopeOfProductsList$ | async"
+              >
+                <input
+                  type="checkbox"
+                  [value]="item.id"
+                  [id]="item.id"
+                  formControlName="scopeOfProducts"
+                />
+                <label [for]="item.id">{{ item.title }}</label>
+              </div>
+            </li>
+            <li class="filter__option-item">
+              <h4 class="filter__option-title">Сроки подачи</h4>
+              <ng-container formArrayName="dataChoice">
+                <div
+                  class="filter__option-value"
+                  *ngFor="let item of this.dataChoiceList$ | async; let i = index;"
+                >
+                  <input
+                    type="checkbox"
+                    [value]="item.id"
+                    [id]="item.id"
+                    [formControlName]="i"
+                  />
+                  <label [for]="item.id">{{ item.title }}</label>
+                </div>
+              </ng-container>
+            </li>
+            <li class="filter__option-item">
+              <h4 class="filter__option-title">Размер предприятия</h4>
+              <div
+                class="filter__option-value"
+                *ngFor="let item of this.sizeOfEnterpriseList$ | async"
+              >
+                <input
+                  type="checkbox"
+                  [value]="item.id"
+                  [id]="item.id"
+                  formControlName="scopeOfProducts"
+                />
+                <label [for]="item.id">{{ item.title }}</label>
+              </div>
+            </li>
+            <li class="filter__option-item">
+              <h4 class="filter__option-title">Направление мер поддержки</h4>
+              <div
+                class="filter__option-value"
+                *ngFor="let item of this.supportMeasuresList$ | async"
+              >
+                <input
+                  type="checkbox"
+                  [value]="item.id"
+                  [id]="item.id"
+                  formControlName="scopeOfProducts"
+                />
+                <label [for]="item.id">{{ item.title }}</label>
+              </div>
+            </li>
+            <li class="filter__option-item">
+              <h4 class="filter__option-title">
+                Формат предоставления меры поддержки
+              </h4>
+              <ng-container formArrayName="grandAndLoans">
+                <div
+                  class="filter__option-value"
+                  *ngFor="let item of this.grandAndLoansList$ | async; ; let i=index"
+                >
+                  <input
+                    type="checkbox"
+                    [value]="item.id"
+                    [id]="item.id"
+                    [formControlName]="i"
+                  />
+                  <label [for]="item.id">{{ item.title }}</label>
+                </div>
+              </ng-container>
+            </li>
+          </ul>
+        </form>
         <a
           class="filter__save link"
           [routerLink]="['/routePath']"
@@ -28,9 +108,9 @@
       <div class="library-list__list">
         <div
           class="library-list__item"
-          *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+          *ngFor="let item of this.resolutionsFiltered"
         >
-          <app-library-list-item></app-library-list-item>
+          <app-library-list-item [entity]="item"></app-library-list-item>
         </div>
       </div>
     </div>
