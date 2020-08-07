@@ -9,8 +9,13 @@ export class ResolutionsFilterAdvanced {
   exported?: boolean;
   smallEnterprise?: boolean;
 
-  scopeOfProducts: number;
+
+  sizeOfEnterprise: Array<number>;
+  scopeOfProducts: Array<number>;
+  dataChoice: Array<number>;
   grandAndLoans: Array<number>;
+
+  searchText: string;
 
 }
 

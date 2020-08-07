@@ -18,13 +18,25 @@ export class LibraryListPageComponent implements OnInit {
   public resolutionsFiltered: Array<Resolution> = [];
 
   public form = new FormGroup({
-    scopeOfProducts: new FormControl(),
+    searchText: new FormControl(),
+    sizeOfEnterprise: new FormArray([]),
+    scopeOfProducts: new FormArray([]),
     dataChoice: new FormArray([]),
     grandAndLoans: new FormArray([]),
   });
 
-  public sizeOfEnterpriseList$ = this.resolutionsService.getSizeOfEnterpriseList();
-  public scopeOfProductsList$ = this.resolutionsService.getScopeOfProductsList();
+  public sizeOfEnterpriseList$ = this.resolutionsService.getSizeOfEnterpriseList()
+    .pipe(
+      tap(x => {
+        this.initFormArray(this.form, 'sizeOfEnterprise', x);
+      })
+    );
+  public scopeOfProductsList$ = this.resolutionsService.getScopeOfProductsList()
+    .pipe(
+      tap(x => {
+        this.initFormArray(this.form, 'scopeOfProducts', x);
+      })
+    );
   public dataChoiceList$ = this.resolutionsService.getDataChoiceList()
     .pipe(
       tap(x => {
@@ -99,16 +111,32 @@ export class LibraryListPageComponent implements OnInit {
 
           let resolutions = [...this.resolutions];
 
-          if (filter.scopeOfProducts) {
-            resolutions = resolutions.filter(item => {
-              return item.scope_product_export.id === filter.scopeOfProducts;
-            });
-          }
 
+          if (filter.scopeOfProducts.filter(x => !!x).length) {
+            resolutions = resolutions.filter(item =>
+              filter.scopeOfProducts
+                .find((id: number) => id === (item && item.scope_product_export && item.scope_product_export.id)));
+          }
+          if (filter.sizeOfEnterprise.filter(x => !!x).length) {
+            resolutions = resolutions.filter(item =>
+              filter.sizeOfEnterprise
+                .find((id: number) => id === (item && item.size_of_enterprise && item.size_of_enterprise.id)));
+          }
+          if (filter.dataChoice.filter(x => !!x).length) {
+            resolutions = resolutions.filter(item =>
+              filter.dataChoice
+                .find((id: number) => id === (item && item.filter_application_deadline && item.filter_application_deadline.id)));
+          }
           if (filter.grandAndLoans.filter(x => !!x).length) {
             resolutions = resolutions.filter(item =>
               filter.grandAndLoans
                 .find((id: number) => id === (item && item.grants_and_loands && item.grants_and_loands.id)));
+          }
+
+          if (filter.searchText) {
+            resolutions = resolutions.filter(item => {
+              return JSON.stringify(item).search(filter.searchText);
+            });
           }
 
           this.resolutionsFiltered = resolutions;

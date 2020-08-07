@@ -12,65 +12,95 @@
               <h4 class="filter__option-title">
                 Область продукции для экспорта
               </h4>
-              <div
-                class="filter__option-value"
-                *ngFor="let item of this.scopeOfProductsList$ | async"
-              >
-                <input
-                  type="checkbox"
-                  [value]="item.id"
-                  [id]="item.id"
-                  formControlName="scopeOfProducts"
-                />
-                <label [for]="item.id">{{ item.title }}</label>
-              </div>
+              <ng-container formArrayName="scopeOfProducts">
+                <div
+                  class="filter__option-value"
+                  *ngFor="
+                    let item of this.scopeOfProductsList$ | async;
+                    let i = index
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    class="filter__option-checkbox"
+                    [value]="item.id"
+                    [id]="item.id"
+                    [formControlName]="i"
+                  />
+                  <label class="filter__option-label" [for]="item.id">{{
+                    item.title
+                  }}</label>
+                </div>
+              </ng-container>
             </li>
             <li class="filter__option-item">
               <h4 class="filter__option-title">Сроки подачи</h4>
               <ng-container formArrayName="dataChoice">
                 <div
                   class="filter__option-value"
-                  *ngFor="let item of this.dataChoiceList$ | async; let i = index;"
+                  *ngFor="
+                    let item of this.dataChoiceList$ | async;
+                    let i = index
+                  "
                 >
                   <input
                     type="checkbox"
+                    class="filter__option-checkbox"
                     [value]="item.id"
                     [id]="item.id"
                     [formControlName]="i"
                   />
-                  <label [for]="item.id">{{ item.title }}</label>
+                  <label class="filter__option-label" [for]="item.id">{{
+                    item.title
+                  }}</label>
                 </div>
               </ng-container>
             </li>
             <li class="filter__option-item">
               <h4 class="filter__option-title">Размер предприятия</h4>
-              <div
-                class="filter__option-value"
-                *ngFor="let item of this.sizeOfEnterpriseList$ | async"
-              >
-                <input
-                  type="checkbox"
-                  [value]="item.id"
-                  [id]="item.id"
-                  formControlName="scopeOfProducts"
-                />
-                <label [for]="item.id">{{ item.title }}</label>
-              </div>
+              <ng-container formArrayName="sizeOfEnterprise">
+                <div
+                  class="filter__option-value"
+                  *ngFor="
+                    let item of this.sizeOfEnterpriseList$ | async;
+                    let i = index
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    class="filter__option-checkbox"
+                    [value]="item.id"
+                    [id]="item.id"
+                    [formControlName]="i"
+                  />
+                  <label class="filter__option-label" [for]="item.id">{{
+                    item.title
+                  }}</label>
+                </div>
+              </ng-container>
             </li>
             <li class="filter__option-item">
               <h4 class="filter__option-title">Направление мер поддержки</h4>
-              <div
-                class="filter__option-value"
-                *ngFor="let item of this.supportMeasuresList$ | async"
-              >
-                <input
-                  type="checkbox"
-                  [value]="item.id"
-                  [id]="item.id"
-                  formControlName="scopeOfProducts"
-                />
-                <label [for]="item.id">{{ item.title }}</label>
-              </div>
+              <ng-container formArrayName="scopeOfProducts">
+                <div
+                  class="filter__option-value"
+                  *ngFor="
+                    let item of this.supportMeasuresList$ | async;
+                    let i = index
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    class="filter__option-checkbox"
+                    [value]="item.id"
+                    [id]="item.id"
+                    [formControlName]="i"
+                  />
+                  <label class="filter__option-label" [for]="item.id">{{
+                    item.title
+                  }}</label>
+                </div>
+              </ng-container>
             </li>
             <li class="filter__option-item">
               <h4 class="filter__option-title">
@@ -79,15 +109,21 @@
               <ng-container formArrayName="grandAndLoans">
                 <div
                   class="filter__option-value"
-                  *ngFor="let item of this.grandAndLoansList$ | async; ; let i=index"
+                  *ngFor="
+                    let item of this.grandAndLoansList$ | async;
+                    let i = index
+                  "
                 >
                   <input
                     type="checkbox"
+                    class="filter__option-checkbox"
                     [value]="item.id"
                     [id]="item.id"
                     [formControlName]="i"
                   />
-                  <label [for]="item.id">{{ item.title }}</label>
+                  <label class="filter__option-label" [for]="item.id">{{
+                    item.title
+                  }}</label>
                 </div>
               </ng-container>
             </li>
@@ -104,7 +140,7 @@
       </div>
     </div>
     <div class="library-list__list-column">
-      <input class="library-list__search" placeholder="Поиск..." />
+      <input class="library-list__search" placeholder="Поиск..."  [formControl]="form.controls['searchText']"/>
       <div class="library-list__list">
         <div
           class="library-list__item"
