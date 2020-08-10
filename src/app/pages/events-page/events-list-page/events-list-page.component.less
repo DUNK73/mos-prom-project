@@ -4,4 +4,80 @@
   &__header {
     margin: 0 0 48px 140px;
   }
+
+  &__header-title {
+    font-size: 64px;
+    line-height: 74px;
+    margin: 0 0 24px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &__header-button {
+    display: inline-flex;
+    margin-left: 60px;
+
+  }
+
+  &__header-menu {
+    display: none;
+  }
+
+  &__header-sub-title {
+    margin: 0 0 24px 0;
+    width: 713px;
+    font-size: 20px;
+    line-height: 23px;
+  }
+}
+
+
+.header-button {
+  // outline: none;
+  &__menu {
+    display: none;
+    position: absolute;
+    width: 300px;
+    top: 0;
+    left: 0;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.11);
+    border-radius: 18px;
+    margin-left: 40px;
+    box-sizing: border-box;
+    padding: 24px 16px;
+    outline: none;
+  }
+
+  &__menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+
+  &__menu-item {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    line-height: 18px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  &__menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__menu-icon {
+    width: 20px;
+    margin: 0 10px 0 0;
+  }
+
+  &:active .header-button__menu,
+  &:focus .header-button__menu {
+    display: block;
+  }
 }

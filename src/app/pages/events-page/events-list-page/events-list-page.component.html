@@ -1,7 +1,25 @@
 <section class="events-list">
   <section class="events-lst__header">
-    <h2>Календарь мероприятий</h2>
-    <p>
+    <h2 class="events-list__header-title">
+      Календарь мероприятий
+      <button class="events-list__header-button header-button points-button">
+        <div class="header-button__menu">
+          <ul class="header-button__menu-list">
+            <li class="header-button__menu-item">
+              <div  class="header-button__menu-icon"><div class="pluss-icon"></div></div>
+              Предложить свое мероприятие
+            </li>
+            <li class="header-button__menu-item">
+              <div class="header-button__menu-icon">
+                <app-svg-calendar width="20" hidden="20"></app-svg-calendar>
+              </div>
+              Смотреть на календаре
+            </li>
+          </ul>
+        </div>
+      </button>
+    </h2>
+    <p class="events-list__header-sub-title">
       Мы сделали календарь мероприятий, в котором собрали для вас информацию о
       выставках, мастер-классах и бизнес-миссиях.
     </p>

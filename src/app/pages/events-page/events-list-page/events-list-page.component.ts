@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../../core/services/events.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-list-page',
@@ -11,10 +13,12 @@ export class EventsListPageComponent implements OnInit {
   public events$ = this.eventsService.getEvents();
 
   constructor(
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.router.navigate([],{ });
   }
 
 }
