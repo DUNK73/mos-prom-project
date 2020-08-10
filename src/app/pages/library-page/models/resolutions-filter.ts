@@ -9,13 +9,14 @@ export class ResolutionsFilterAdvanced {
   exported?: boolean;
   smallEnterprise?: boolean;
 
+  moscowOrRf?: Array<number>;
+  sizeOfEnterprise?: Array<number>;
+  supportMeasures?: Array<number>;
+  scopeOfProducts?: Array<number>;
+  dataChoice?: Array<number>;
+  grandAndLoans?: Array<number>;
 
-  sizeOfEnterprise: Array<number>;
-  scopeOfProducts: Array<number>;
-  dataChoice: Array<number>;
-  grandAndLoans: Array<number>;
-
-  searchText: string;
+  searchText?: string;
 
 }
 

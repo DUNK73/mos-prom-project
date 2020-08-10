@@ -8,6 +8,8 @@ import { LibraryIndexPageComponent } from './library-index-page/library-index-pa
 import { LibraryListPageComponent } from './library-list-page/library-list-page.component';
 import { LibraryDetailPageComponent } from './library-detail-page/library-detail-page.component';
 import { LibraryListItemComponent } from './components/library-list-item/library-list-item.component';
+import { DirectivesModule } from '../../shared/directives/directives.module';
+import { ComponentsModule } from '../../shared/components/components.module';
 
 @NgModule({
   imports: [
@@ -16,6 +18,8 @@ import { LibraryListItemComponent } from './components/library-list-item/library
     ReactiveFormsModule,
 
     LibraryPageRoutingModule,
+    DirectivesModule,
+    ComponentsModule,
   ],
   declarations: [
     LibraryIndexPageComponent,

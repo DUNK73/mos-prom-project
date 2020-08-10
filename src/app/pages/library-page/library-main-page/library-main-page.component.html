@@ -15,20 +15,39 @@
       Опишите свое предприятие, чтобы увидеть, какие меры поддержки вам подойдут
     </p>
     <form class="form" [formGroup]="form">
-
       <div class="field">
         <p class="field__label">
           Относится ли ваша компания к субъекту малого или среднего
           предпринимательства?
         </p>
         <div class="field__radio-group">
-          <input
+          <ng-container
+            *ngFor="
+              let item of this.sizeOfEnterpriseList$ | async;
+              let i = index
+            "
+          >
+            <input
+              type="radio"
+              class="field__radio-input"
+              [id]="'sizeOfEnterprise' + i"
+              name="sizeOfEnterprise"
+              [value]="item.value"
+              formControlName="sizeOfEnterprise"
+            />
+            <label
+              class="field__radio-label button button--radio"
+              [for]="'sizeOfEnterprise' + i"
+              >{{ item.title }}</label
+            >
+          </ng-container>
+          <!-- <input
             type="radio"
             class="field__radio-input"
             id="inMoscom-1"
             name="inMoscom"
-            value="true"
-            formControlName="inMoscom"
+            value="15"
+            [formControlName]="0"
           />
           <label
             class="field__radio-label button button--radio"
@@ -40,86 +59,91 @@
             class="field__radio-input"
             id="inMoscom-2"
             name="inMoscom"
-            value="false"
-            formControlName="inMoscom"
+            value="16"
+            [formControlName]="1"
           />
           <label
             class="field__radio-label button button--radio"
             for="inMoscom-2"
             >Нет</label
-          >
+          > -->
         </div>
       </div>
+
       <div class="field">
         <p class="field__label">
           Ваша компания производит свою продукцию в Москве?
         </p>
         <div class="field__radio-group">
-          <input
-            type="radio"
-            class="field__radio-input"
-            id="exported-1"
-            name="exported"
-            value="true"
-            formControlName="exported"
-          />
-          <label
-            class="field__radio-label button button--radio"
-            for="exported-1"
-            >Да</label
+          <ng-container
+            *ngFor="let item of this.moscowOrRfList$ | async; let i = index"
           >
-          <input
-            type="radio"
-            class="field__radio-input"
-            id="exported-2"
-            name="exported"
-            value="false"
-            formControlName="exported"
-          />
-          <label
-            class="field__radio-label button button--radio"
-            for="exported-2"
-            >Нет</label
-          >
+            <input
+              type="radio"
+              class="field__radio-input"
+              [id]="'moscowOrRf' + i"
+              name="moscowOrRf"
+              [value]="item.value"
+              formControlName="moscowOrRf"
+            />
+            <label
+              class="field__radio-label button button--radio"
+              [for]="'moscowOrRf' + i"
+              >{{ item.title }}</label
+            >
+          </ng-container>
         </div>
       </div>
+
       <div class="field">
         <p class="field__label">Вы уже экспортируете свою продукцию?</p>
         <div class="field__radio-group">
-          <input
-            type="radio"
-            class="field__radio-input"
-            id="smallEnterprise-1"
-            name="smallEnterprise"
-            value="true"
-            formControlName="smallEnterprise"
-          />
-          <label
-            class="field__radio-label button button--radio"
-            for="smallEnterprise-1"
-            >Да</label
+          <ng-container
+            *ngFor="let item of this.exportedList$ | async; let i = index"
           >
-          <input
-            type="radio"
-            class="field__radio-input"
-            id="smallEnterprise-2"
-            name="smallEnterprise"
-            value="false"
-            formControlName="smallEnterprise"
-          />
-          <label
-            class="field__radio-label button button--radio"
-            for="smallEnterprise-2"
-            >Нет</label
-          >
+            <input
+              type="radio"
+              class="field__radio-input"
+              [id]="'exported' + i"
+              name="exported"
+              [value]="item.value"
+              formControlName="exported"
+            />
+            <label
+              class="field__radio-label button button--radio"
+              [for]="'exported' + i"
+              >{{ item.title }}</label
+            >
+          </ng-container>
         </div>
       </div>
+
       <div class="field">
         <p class="field__label">
           К какой области относится продукция подлежающая экспорту?
         </p>
         <div class="field__radio-group">
-          <input
+          <ng-container
+            *ngFor="
+              let item of this.scopeOfProductsList$ | async;
+              let i = index
+            "
+          >
+            <input
+              type="radio"
+              class="field__radio-input"
+              [id]="'scopeOfProducts' + i"
+              name="scopeOfProducts"
+              [value]="item.value"
+              formControlName="scopeOfProducts"
+            />
+            <label
+              class="field__radio-label button button--radio"
+              [for]="'scopeOfProducts' + i"
+              >{{ item.title }}</label
+            >
+          </ng-container>
+          <!-- <input
             type="radio"
             class="field__radio-input"
             id="option-4-1"
@@ -128,7 +152,8 @@
             formControlName="option4"
           />
           <label
-            class="field__radio-label button button--radio button--radio-large" for="option-4-1"
+            class="field__radio-label button button--radio button--radio-large"
+            for="option-4-1"
             >Промышленный комплекс</label
           >
           <input
@@ -140,7 +165,8 @@
             formControlName="option4"
           />
           <label
-            class="field__radio-label button button--radio button--radio-large" for="option-4-2"
+            class="field__radio-label button button--radio button--radio-large"
+            for="option-4-2"
             >Агропромышленный комплекс</label
           >
           <input
@@ -152,9 +178,10 @@
             formControlName="option4"
           />
           <label
-            class="field__radio-label button button--radio button--radio-large" for="option-4-3"
+            class="field__radio-label button button--radio button--radio-large"
+            for="option-4-3"
             >Другое</label
-          >
+          > -->
         </div>
       </div>
       <!-- <div class="field">
@@ -211,10 +238,14 @@
       </div> -->
 
       <div class="form__bottom">
-        <a class="form__bottom-item button" [routerLink]="['list']" [queryParams]="this.form.value">Готово</a>
+        <a
+          class="form__bottom-item button"
+          [routerLink]="['list']"
+          [queryParams]="this.form.value"
+          >Готово</a
+        >
         <a class="form__bottom-item link" [routerLink]="['list']">Пропустить</a>
       </div>
-
     </form>
   </section>
 </section>

@@ -1,3 +1,97 @@
-<p>
-  library-detail-page works!
-</p>
+<section class="library-detail-page" *ngIf="this.resolution$ | async as entity">
+  <div class="library-detail-page__header-block">
+    <nav class="library-detail-page__navigation">
+      <span class="library-detail-page__navigation-item">
+        <a class="link">Меры поддержки</a>
+      </span>
+      /
+      <span class="library-detail-page__navigation-item">
+        {{ entity.res_number }}
+      </span>
+    </nav>
+
+    <section class="library-detail-page__titel">
+      <p class="library-detail-page__titel-info">
+        <span class="library-detail-page__titel-number"
+          >{{ entity.res_number }} {{ entity.date_of_res }}</span
+        >
+        <span class="library-detail-page__titel-deadline">{{
+          entity.application_deadline
+        }}</span>
+      </p>
+      <h3 class="library-detail-page__titel-head">{{ entity.res_title }}</h3>
+      <div class="library-detail-page__actions actions">
+        <ul class="actions__action-list">
+          <li class="actions__action-item">
+            <button class="button">Оформить заявку</button>
+          </li>
+          <li class="actions__action-item">
+            <a class="actions__action-link link">Добавить в Избранное</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="library-detail-page__information-block">
+    <section
+      class="library-detail-page__description library-detail-page__section"
+    >
+      <h4 class="library-detail-page__section-title">Краткое описание</h4>
+      <p class="library-detail-page__section-text">
+        <app-markdown-viewer [text]="entity.short_description">
+        </app-markdown-viewer>
+      </p>
+    </section>
+
+    <section
+      class="library-detail-page__mechanism library-detail-page__section"
+    >
+      <h4 class="library-detail-page__section-title">Механизм получения</h4>
+      <p class="library-detail-page__section-text">
+        <app-markdown-viewer [text]="entity.how_to_get_support">
+        </app-markdown-viewer>
+      </p>
+    </section>
+
+    <section
+      class="library-detail-page__requirements library-detail-page__section"
+    >
+      <h4 class="library-detail-page__section-title">
+        Требования к организации
+      </h4>
+      <p class="library-detail-page__section-text">
+        <app-markdown-viewer [text]="'???'"> </app-markdown-viewer>
+      </p>
+      <a>Смотреть полный текст </a>
+    </section>
+
+    <section
+      class="library-detail-page__documents library-detail-page__section"
+    >
+      <h4 class="library-detail-page__section-title">
+        Список документов, необходимых для подачи
+      </h4>
+      <p class="library-detail-page__section-text">
+        <app-markdown-viewer [text]="entity.document_list">
+        </app-markdown-viewer>
+      </p>
+    </section>
+
+    <section
+      class="library-detail-page__resolution library-detail-page__section"
+    >
+      <h4 class="library-detail-page__section-title">
+        Информация о постановлении
+      </h4>
+      <p class="library-detail-page__section-text">
+        <app-markdown-viewer [text]="entity.information_about_res">
+        </app-markdown-viewer>
+      </p>
+    </section>
+
+    <section class="library-detail-page__measures library-detail-page__section">
+      <h4 class="library-detail-page__section-title">Похожие меры поддержки</h4>
+    </section>
+  </div>
+</section>

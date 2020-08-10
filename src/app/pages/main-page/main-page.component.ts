@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { TinySliderSettings } from 'tiny-slider';
-import { ResolutionsService } from '../../core/services/test.service';
+import { ResolutionsService } from '../../core/services/resolutions.service';
 import { tap } from 'rxjs/operators';
 import { Resolution } from 'src/app/models/resolution.model';
 import { TinySliderComponent } from '../../shared/components/tiny-slider/tiny-slider.component';

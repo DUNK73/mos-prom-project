@@ -1,0 +1,18 @@
+<section class="events-list">
+  <section class="events-lst__header">
+    <h2>Календарь мероприятий</h2>
+    <p>
+      Мы сделали календарь мероприятий, в котором собрали для вас информацию о
+      выставках, мастер-классах и бизнес-миссиях.
+    </p>
+  </section>
+  <section class="events-lst__filter"></section>
+  <section class="events-lst__calendar">
+    <app-events-calendar></app-events-calendar>
+  </section>
+  <section class="events-lst__list">
+    <div *ngFor="let item of this.events$ | async">
+      {{ item | json }}
+    </div>
+  </section>
+</section>

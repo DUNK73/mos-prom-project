@@ -1,10 +1,9 @@
 <section class="container-detail-page">
-  <div class="library-list">
-    <div class="library-list__filter-column">
+  <div class="library-list" test>
+    <div class="library-list__filter-column library-list__filter-column--first">
       <button class="library-list__filter-button button">
         Применить сохраненные фильтры
       </button>
-      {{ form.value | json }}
       <div class="library-list__filter filter tile">
         <form [formGroup]="form">
           <ul class="filter__options-list">
@@ -140,13 +139,22 @@
       </div>
     </div>
     <div class="library-list__list-column">
-      <input class="library-list__search" placeholder="Поиск..."  [formControl]="form.controls['searchText']"/>
+      <div class="library-list__search">
+        <input
+          class="library-list__search-input"
+          placeholder="Поиск..."
+          [formControl]="form.controls['searchText']"
+        />
+        <div class="library-list__search-icon search-icon"></div>
+      </div>
       <div class="library-list__list">
         <div
           class="library-list__item"
           *ngFor="let item of this.resolutionsFiltered"
         >
-          <app-library-list-item [entity]="item"></app-library-list-item>
+          <a [routerLink]="[item.id]" class="library-list__item-link">
+            <app-library-list-item [entity]="item"></app-library-list-item>
+          </a>
         </div>
       </div>
     </div>

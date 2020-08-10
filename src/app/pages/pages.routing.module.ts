@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnalyticsPageComponent } from './analytics-page/analytics-page.component';
-import { EventsPageComponent } from './events-page/events-page.component';
+
 import { MainPageComponent } from './main-page/main-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { PageContainerComponent } from './page-container/page-container.component';
@@ -26,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'events',
-        component: EventsPageComponent,
+        loadChildren: () => import('./events-page/events-page.module').then(m => m.EventsPageModule),
       },
       {
         path: 'news',

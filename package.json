@@ -24,6 +24,7 @@
     "@rs-bank/rs-forms-extention": "0.0.18",
     "@rs-bank/rs-rxjs-extention": "0.0.4",
     "rxjs": "~6.5.5",
+    "showdown": "^1.9.1",
     "tiny-slider": "^2.9.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

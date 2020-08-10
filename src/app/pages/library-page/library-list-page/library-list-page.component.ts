@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { tap, switchMap, map } from 'rxjs/operators';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap, tap, filter } from 'rxjs/operators';
+import { ResolutionsService } from '../../../core/services/resolutions.service';
+import { FilterApplicationDeadline, Resolution } from '../../../models/resolution.model';
 import { ResolutionsFilter, ResolutionsFilterAdvanced } from '../models/resolutions-filter';
-import { ResolutionsService } from '../../../core/services/test.service';
-import { Resolution, FilterApplicationDeadline } from '../../../models/resolution.model';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
-import { GrandAndLoans } from '../../../models/grand-and-loans.model';
 
 @Component({
   selector: 'app-library-list-page',
@@ -17,12 +16,19 @@ export class LibraryListPageComponent implements OnInit {
   public resolutions: Array<Resolution> = [];
   public resolutionsFiltered: Array<Resolution> = [];
 
+  private filter: ResolutionsFilterAdvanced;
+
   public form = new FormGroup({
-    searchText: new FormControl(),
+    exported: new FormControl(),
+
+    moscowOrRf: new FormArray([]),
+    supportMeasures: new FormArray([]),
     sizeOfEnterprise: new FormArray([]),
     scopeOfProducts: new FormArray([]),
     dataChoice: new FormArray([]),
     grandAndLoans: new FormArray([]),
+
+    searchText: new FormControl(),
   });
 
   public sizeOfEnterpriseList$ = this.resolutionsService.getSizeOfEnterpriseList()
@@ -43,7 +49,12 @@ export class LibraryListPageComponent implements OnInit {
         this.initFormArray(this.form, 'dataChoice', x);
       })
     );
-  public supportMeasuresList$ = this.resolutionsService.getSupportMeasuresList();
+  public supportMeasuresList$ = this.resolutionsService.getSupportMeasuresList()
+    .pipe(
+      tap(x => {
+        this.initFormArray(this.form, 'supportMeasures', x);
+      })
+    );
   public grandAndLoansList$ = this.resolutionsService.getGrandAndLoansList()
     .pipe(
       tap(x => {
@@ -51,55 +62,65 @@ export class LibraryListPageComponent implements OnInit {
       })
     );
 
+
   private initFormArray(form: FormGroup, field: string, list: Array<FilterApplicationDeadline>): void {
     list.forEach(item => {
 
       const control = new FormControl();
-      control.valueChanges
-        .pipe(
-          tap(value => {
-            if (value) {
-              control.setValue(item.id, { emitEvent: false });
-            }
-          })
-        )
-        .subscribe();
 
       const formArray = (form.controls[field] as FormArray);
       formArray.push(control);
+
+      if (this.filter) {
+        this.form.patchValue(this.filter, { emitEvent: false });
+      }
     });
   }
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private resolutionsService: ResolutionsService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.queryParams
+    this.activatedRoute.queryParamMap
       .pipe(
-        map((filterParameters: ResolutionsFilter) => {
-          const filter: ResolutionsFilter = {};
-          filter.exported = new Boolean(filterParameters.exported).valueOf();
-          filter.inMoscom = new Boolean(filterParameters.inMoscom).valueOf();
-          filter.smallEnterprise = new Boolean(filterParameters.smallEnterprise).valueOf();
+        filter(x => !this.filter),
+        map(x => {
+
+          const filter: ResolutionsFilterAdvanced = {
+
+            searchText: x.get('searchText'),
+
+            // tslint:disable-next-line: no-construct
+            exported: x.get('exported') === null ? null : new Boolean(x.get('exported')).valueOf(),
+
+            moscowOrRf: x.getAll('moscowOrRf').map(item => +item),
+            sizeOfEnterprise: x.getAll('sizeOfEnterprise').map(item => +item),
+            supportMeasures: x.getAll('supportMeasures').map(item => +item),
+            scopeOfProducts: x.getAll('scopeOfProducts').map(item => +item),
+            dataChoice: x.getAll('dataChoice').map(item => +item),
+            grandAndLoans: x.getAll('grandAndLoans').map(item => +item),
+          };
+
+          this.form.patchValue(filter);
+
+          this.filter = filter;
+
           return filter;
         }),
         switchMap((filter: ResolutionsFilter) => {
           return this.resolutionsService.getResolutions()
             .pipe(
-              map((data: Array<Resolution>) => {
-                return data.filter(f => {
-                  return f.exported === filter.exported;
-                });
+              tap((data: Array<Resolution>) => {
+
+                this.resolutions = data;
+                this.resolutionsFiltered = this.filtering(this.resolutions, filter);
+
               })
             );
-        }),
-        tap(data => {
-          this.resolutions = data;
-          this.resolutionsFiltered = data;
         })
-
       )
       .subscribe();
 
@@ -108,41 +129,66 @@ export class LibraryListPageComponent implements OnInit {
       .valueChanges
       .pipe(
         tap((filter: ResolutionsFilterAdvanced) => {
-
-          let resolutions = [...this.resolutions];
-
-
-          if (filter.scopeOfProducts.filter(x => !!x).length) {
-            resolutions = resolutions.filter(item =>
-              filter.scopeOfProducts
-                .find((id: number) => id === (item && item.scope_product_export && item.scope_product_export.id)));
+          if (this.resolutions?.length) {
+            this.resolutionsFiltered = this.filtering(this.resolutions, filter);
+            this.router.navigate([], { queryParams: filter });
           }
-          if (filter.sizeOfEnterprise.filter(x => !!x).length) {
-            resolutions = resolutions.filter(item =>
-              filter.sizeOfEnterprise
-                .find((id: number) => id === (item && item.size_of_enterprise && item.size_of_enterprise.id)));
-          }
-          if (filter.dataChoice.filter(x => !!x).length) {
-            resolutions = resolutions.filter(item =>
-              filter.dataChoice
-                .find((id: number) => id === (item && item.filter_application_deadline && item.filter_application_deadline.id)));
-          }
-          if (filter.grandAndLoans.filter(x => !!x).length) {
-            resolutions = resolutions.filter(item =>
-              filter.grandAndLoans
-                .find((id: number) => id === (item && item.grants_and_loands && item.grants_and_loands.id)));
-          }
-
-          if (filter.searchText) {
-            resolutions = resolutions.filter(item => {
-              return JSON.stringify(item).search(filter.searchText);
-            });
-          }
-
-          this.resolutionsFiltered = resolutions;
         })
       )
       .subscribe();
+  }
+
+  private filtering(resolutionsToFiltering: Array<Resolution>, filter: ResolutionsFilterAdvanced): Array<Resolution> {
+
+    let resolutions = [...resolutionsToFiltering];
+
+    if (!filter) {
+      return resolutions;
+    }
+
+    if (filter.exported !== null && filter.exported !== undefined) {
+      resolutions = resolutions.filter(item => item.exported === filter.exported);
+    }
+
+    if (filter.moscowOrRf?.filter(x => !!x).length) {
+      resolutions = resolutions.filter(item =>
+        filter.moscowOrRf
+          .find((id: number) => +id === (item && item.moscow_or_rf && item.moscow_or_rf.id)));
+    }
+    if (filter.sizeOfEnterprise?.filter(x => !!x).length) {
+      resolutions = resolutions.filter(item =>
+        filter.sizeOfEnterprise
+          .find((id: number) => +id === (item && item.size_of_enterprise && item.size_of_enterprise.id)));
+    }
+    // if (filter.supportMeasures.filter(x => !!x).length) {
+    //   resolutions = resolutions.filter(item =>
+    //     filter.supportMeasures
+    //       .find((id: number) => +id === (item && item.support_measures && item.support_measures.id)));
+    // }
+    if (filter.scopeOfProducts?.filter(x => !!x).length) {
+      resolutions = resolutions.filter(item =>
+        filter.scopeOfProducts
+          .find((id: number) => +id === (item && item.scope_product_export && item.scope_product_export.id)));
+    }
+    if (filter.dataChoice?.filter(x => !!x).length) {
+      resolutions = resolutions.filter(item =>
+        filter.dataChoice
+          .find((id: number) => +id === (item && item.filter_application_deadline && item.filter_application_deadline.id)));
+    }
+    if (filter.grandAndLoans?.filter(x => !!x).length) {
+      resolutions = resolutions.filter(item =>
+        filter.grandAndLoans
+          .find((id: number) => +id === (item && item.grants_and_loands && item.grants_and_loands.id)));
+    }
+
+    if (filter.searchText) {
+      resolutions = resolutions.filter(item => {
+        let s = JSON.stringify(item).search(filter.searchText);
+        return s > 0;
+      });
+    }
+
+    return resolutions;
   }
 
 }

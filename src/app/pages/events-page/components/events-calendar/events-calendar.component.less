@@ -1,0 +1,127 @@
+.tools {
+
+  &__month-change {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  &__button {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: none;
+    border-top: 2px solid #B7B7B7;
+    border-left: 2px solid #B7B7B7;
+    cursor: pointer;
+
+    &--prev {
+      transform: rotate(-45deg);
+    }
+
+    &--next {
+      transform: rotate(-45deg) scale(-1, -1);
+    }
+
+  }
+
+  &__text {
+    margin: 0 20px;
+  }
+}
+
+.calendar {
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    line-height: 18px;
+
+    color: #808080;
+  }
+
+  &__tools {
+    display: flex;
+    justify-content: flex-end;
+
+  }
+
+  &__header-day-title {
+    width: 14.2%;
+    text-align: center;
+    padding: 16px 0 24px 0;
+  }
+
+  &__week-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__week {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #B7B7B7;
+
+    &:last-child {
+      border-bottom: 1px solid #B7B7B7;
+    }
+  }
+
+  &__day {
+    box-sizing: border-box;
+    width: 14.3%;
+    height: 128px;
+    border-left: 1px solid #B7B7B7;
+    padding: 16px;
+    // box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.04);
+
+    font-size: 16px;
+    line-height: 18px;
+    text-align: right;
+
+    color: #000000;
+
+    &:last-child {
+      border-right: 1px solid #B7B7B7;
+    }
+  }
+
+  &__day-value {
+    padding: 0;
+    margin: 0;
+    color: #808080;
+
+    &--current-month {
+      color: #000000;
+    }
+  }
+}
+
+.event {
+  box-sizing: border-box;
+  position: absolute;
+  width: calc(14.3% * 5 - 16px);
+  height: 32px;
+  left: calc(14.3% * 2);
+  bottom: 0;
+  border-radius: 7px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  margin: 0 8px;
+  text-align: left;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+}

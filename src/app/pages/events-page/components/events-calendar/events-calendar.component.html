@@ -1,0 +1,42 @@
+<section class="calendar">
+  <div class="calendar__tools tools">
+    <div class="tools__month-change">
+      <button
+        class="tools__button tools__button--prev"
+        (click)="prevMonth()"
+      ></button>
+      <span class="tools__text"
+        >{{ this.months[curentMonth.getMonth()] }}
+        {{ curentMonth.getFullYear() }}</span
+      >
+      <button
+        class="tools__button tools__button--next"
+        (click)="nextMonth()"
+      ></button>
+    </div>
+  </div>
+  <div class="calendar__header">
+    <div class="calendar__header-day-title">Пн</div>
+    <div class="calendar__header-day-title">Вт</div>
+    <div class="calendar__header-day-title">Ср</div>
+    <div class="calendar__header-day-title">Чт</div>
+    <div class="calendar__header-day-title">Пт</div>
+    <div class="calendar__header-day-title">Сб</div>
+    <div class="calendar__header-day-title">Вс</div>
+  </div>
+  <div class="calendar__week" *ngFor="let week of dates">
+    <div class="calendar__day" *ngFor="let day of week">
+      <div class="event">Международная бизнес-миссия — Cаудовская Аравия</div>
+
+      <p
+        class="calendar__day-value"
+        [ngClass]="{
+          'calendar__day-value--current-month':
+            day.getMonth() === this.curentMonth.getMonth()
+        }"
+      >
+        {{ day.getDate() }}
+      </p>
+    </div>
+  </div>
+</section>
