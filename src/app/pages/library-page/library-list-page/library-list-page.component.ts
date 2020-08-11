@@ -5,6 +5,7 @@ import { map, switchMap, tap, filter } from 'rxjs/operators';
 import { ResolutionsService } from '../../../core/services/resolutions.service';
 import { FilterApplicationDeadline, Resolution } from '../../../models/resolution.model';
 import { ResolutionsFilter, ResolutionsFilterAdvanced } from '../models/resolutions-filter';
+import { zip, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-library-list-page',
@@ -30,6 +31,15 @@ export class LibraryListPageComponent implements OnInit {
 
     searchText: new FormControl(),
   });
+
+  private filterOptionsLoader = new Map<string, Subject<any>>([
+    ['sizeOfEnterprise', new Subject()],
+    ['scopeOfProducts', new Subject()],
+    ['dataChoice', new Subject()],
+    ['supportMeasures', new Subject()],
+    ['grandAndLoans', new Subject()],
+  ]);
+
 
   public sizeOfEnterpriseList$ = this.resolutionsService.getSizeOfEnterpriseList()
     .pipe(
@@ -75,6 +85,9 @@ export class LibraryListPageComponent implements OnInit {
         this.form.patchValue(this.filter, { emitEvent: false });
       }
     });
+
+    this.filterOptionsLoader.get(field).next();
+
   }
 
   constructor(
@@ -84,7 +97,9 @@ export class LibraryListPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.queryParamMap
+
+    this.activatedRoute
+      .queryParamMap
       .pipe(
         filter(x => !this.filter),
         map(x => {
@@ -124,18 +139,40 @@ export class LibraryListPageComponent implements OnInit {
       )
       .subscribe();
 
+    // this.filterOptionsLoader.get('grandAndLoans')
+    // .asObservable()
 
-    this.form
-      .valueChanges
+    zip(
+      this.filterOptionsLoader.get('sizeOfEnterprise')
+        .asObservable(),
+      this.filterOptionsLoader.get('scopeOfProducts')
+        .asObservable(),
+      this.filterOptionsLoader.get('dataChoice')
+        .asObservable(),
+      this.filterOptionsLoader.get('supportMeasures')
+        .asObservable(),
+      this.filterOptionsLoader.get('grandAndLoans')
+        .asObservable(),
+    )
       .pipe(
-        tap((filter: ResolutionsFilterAdvanced) => {
-          if (this.resolutions?.length) {
-            this.resolutionsFiltered = this.filtering(this.resolutions, filter);
-            this.router.navigate([], { queryParams: filter });
-          }
+        tap((x) => {
+          alert('QQQQQQQQ');
+          this.form
+            .valueChanges
+            .pipe(
+              tap((filter: ResolutionsFilterAdvanced) => {
+                if (this.resolutions?.length) {
+                  this.resolutionsFiltered = this.filtering(this.resolutions, filter);
+                  this.router.navigate([], { queryParams: filter });
+                }
+              })
+            )
+            .subscribe();
         })
       )
       .subscribe();
+
+
   }
 
   private filtering(resolutionsToFiltering: Array<Resolution>, filter: ResolutionsFilterAdvanced): Array<Resolution> {
