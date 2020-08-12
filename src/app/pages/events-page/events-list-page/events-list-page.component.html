@@ -7,13 +7,13 @@
           <ul class="header-button__menu-list">
             <li class="header-button__menu-item">
               <div  class="header-button__menu-icon"><div class="pluss-icon"></div></div>
-              Предложить свое мероприятие
+              <a>Предложить свое мероприятие</a>
             </li>
             <li class="header-button__menu-item">
               <div class="header-button__menu-icon">
                 <app-svg-calendar width="20" hidden="20"></app-svg-calendar>
               </div>
-              Смотреть на календаре
+              <a [routerLink]="['calendar']">Смотреть на календаре</a>
             </li>
           </ul>
         </div>
@@ -26,11 +26,11 @@
   </section>
   <section class="events-lst__filter"></section>
   <section class="events-lst__calendar">
-    <app-events-calendar></app-events-calendar>
+    <router-outlet></router-outlet>
   </section>
-  <section class="events-lst__list">
+  <!-- <section class="events-lst__list">
     <div *ngFor="let item of this.events$ | async">
       {{ item | json }}
     </div>
-  </section>
+  </section> -->
 </section>

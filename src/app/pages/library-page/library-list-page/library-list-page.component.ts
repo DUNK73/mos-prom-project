@@ -156,7 +156,6 @@ export class LibraryListPageComponent implements OnInit {
     )
       .pipe(
         tap((x) => {
-          alert('QQQQQQQQ');
           this.form
             .valueChanges
             .pipe(
@@ -167,6 +166,7 @@ export class LibraryListPageComponent implements OnInit {
                 }
               })
             )
+            // TODO нужна отписка
             .subscribe();
         })
       )

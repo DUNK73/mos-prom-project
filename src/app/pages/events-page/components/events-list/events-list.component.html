@@ -1,3 +1,28 @@
-<p>
-  events-list works!
-</p>
+<section class="events-list">
+  <article class="events-list__item" *ngFor="let item of list$ | async" >
+    <p class="events-list__item-tile"> {{ item.title }}</p>
+    <div class="events-list__info-block info-block">
+      <div class="info-block__title">Страна</div>
+      <p class="info-block__value">{{item.country[0].title}}</p>
+    </div>
+    <div class="events-list__info-block info-block">
+      <div class="info-block__title">Дата мероприятия</div>
+      <p class="info-block__value">{{item.date_of_event_start}}</p>
+    </div>
+    <div class="events-list__info-block info-block">
+      <div class="info-block__title">Регистрация до</div>
+      <p class="info-block__value">{{item.date_of_registration_to_event}}</p>
+    </div>
+
+    <div class="events-list__info-block events-list__info-block info-block">
+      <div class="info-block__title">Набор участников</div>
+      <p
+        class="info-block__value"
+        [ngClass]="{
+          'info-block__value--red': !item.set_of_participants,
+          'info-block__value--green': item.set_of_participants
+        }"
+      >{{item}}</p>
+    </div>
+  </article>
+</section>

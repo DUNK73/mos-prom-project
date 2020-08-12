@@ -18,7 +18,9 @@ export class EventsListPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.router.navigate([],{ });
+    this.router.navigate([], {});
+    this.eventsService.getEvents()
+      .subscribe();
   }
 
 }

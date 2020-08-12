@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-calendar',
@@ -28,7 +29,11 @@ export class EventsCalendarComponent implements OnInit {
   public dates2: Array<any> = [];
   public curentMonth: Date;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
+
+
 
   ngOnInit() {
     const now = new Date();
